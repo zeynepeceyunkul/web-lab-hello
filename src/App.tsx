@@ -1,14 +1,44 @@
 function App() {
   return (
-    <div style={{ padding: 24 }}>
-      <h1>Web Tasarımı ve Programlama</h1>
-      <h2>LAB - 1</h2>
+    <>
+      {/* Skip link (a11y) */}
+      <a href="#main-content" className="skip-link">
+        Ana içeriğe atla
+      </a>
 
-      <p><strong>Ad Soyad:</strong> Zeynep Ece Yünkül</p>
-      <p><strong>Öğrenci No:</strong> 235542004</p>
-      <p><strong>Bölüm:</strong> Yazılım Mühendisliği</p>
-      <p><strong>Kısa Tanıtım:</strong> Frontend öğreniyorum</p>
-    </div>
+      <header>
+        <nav aria-label="Ana navigasyon">
+          <ul>
+            <li><a href="#hakkimda">Hakkımda</a></li>
+            <li><a href="#projeler">Projeler</a></li>
+            <li><a href="#iletisim">İletişim</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main id="main-content">
+        <h1>Zeynep Ece Yünkül - Kişisel Portföy</h1>
+
+        <section id="hakkimda">
+          <h2>Hakkımda</h2>
+          {/* içerik birazdan */}
+        </section>
+
+        <section id="projeler">
+          <h2>Projelerim</h2>
+          {/* içerik birazdan */}
+        </section>
+
+        <section id="iletisim">
+          <h2>İletişim</h2>
+          {/* form birazdan */}
+        </section>
+      </main>
+
+      <footer>
+        <p>&copy; 2026 Zeynep Ece Yünkül. Tüm hakları saklıdır.</p>
+      </footer>
+    </>
   )
 }
 
