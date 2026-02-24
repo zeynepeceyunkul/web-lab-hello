@@ -55,3 +55,11 @@ figure img {
   border-radius: 999px;
   object-fit: cover;
 }
+#projeler article {
+  padding: 12px;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+#projeler a { color: #60a5fa; }
+#projeler a:focus { outline: 2px solid #2563eb; outline-offset: 2px; }

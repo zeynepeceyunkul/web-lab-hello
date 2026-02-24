@@ -48,6 +48,27 @@ function App() {
 
         <section id="projeler">
           <h2>Projelerim</h2>
+          <article>
+            <h3>Mindful Habits</h3>
+            <p>Günlük alışkanlık takip ve motivasyon uygulaması.</p>
+            <p><strong>Teknolojiler:</strong> React, Tailwind CSS, Firebase</p>
+            <p>
+              <a href="https://github.com/zeynepeceyunkul/mindful-habits" target="_blank" rel="noreferrer">
+                GitHub Repo
+              </a>
+            </p>
+          </article>
+
+          <article>
+            <h3>Scalable URL Shortener</h3>
+            <p>Kısa link üretimi ve yönlendirme mantığı üzerine backend projesi.</p>
+            <p><strong>Teknolojiler:</strong> Node.js, TypeScript</p>
+            <p>
+              <a href="https://github.com/zeynepeceyunkul/scalable-url-shortener" target="_blank" rel="noreferrer">
+                GitHub Repo
+              </a>
+            </p>
+          </article>
           {/* içerik birazdan */}
         </section>
 
