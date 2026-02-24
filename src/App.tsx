@@ -1,12 +1,13 @@
 function App() {
   return (
-    <div>
+    <div style={{ padding: 24 }}>
       <h1>Web Tasarımı ve Programlama</h1>
       <h2>LAB - 1</h2>
-      <p>Ad Soyad: Zeynep Ece Yünkül</p>
-      <p>Öğrenci No: 235542004</p>
-      <p>Bölüm: Yazılım Mühendisliği</p>
-      <p>Kısa Tanıtım: Frontend öğreniyorum 🚀</p>
+
+      <p><strong>Ad Soyad:</strong> Zeynep Ece Yünkül</p>
+      <p><strong>Öğrenci No:</strong> 235542004</p>
+      <p><strong>Bölüm:</strong> Yazılım Mühendisliği</p>
+      <p><strong>Kısa Tanıtım:</strong> Frontend öğreniyorum</p>
     </div>
   )
 }
