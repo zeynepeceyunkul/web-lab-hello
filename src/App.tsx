@@ -21,6 +21,28 @@ function App() {
 
         <section id="hakkimda">
           <h2>Hakkımda</h2>
+          <figure>
+            <img
+              src="/profil.jpg"
+              alt="Zeynep Ece Yünkül profil fotoğrafı"
+              width={180}
+              height={180}
+            />
+            <figcaption>Zeynep Ece Yünkül</figcaption>
+          </figure>
+
+          <p>
+            Frontend geliştirme ve UI/UX alanında kendimi geliştiriyorum. React ve TypeScript ile
+            semantik ve erişilebilir arayüzler üretmeyi hedefliyorum.
+          </p>
+
+          <h3>Kullandığım Teknolojiler</h3>
+          <ul>
+            <li>React</li>
+            <li>TypeScript</li>
+            <li>HTML5 (Semantik)</li>
+            <li>CSS</li>
+          </ul>
           {/* içerik birazdan */}
         </section>
 
