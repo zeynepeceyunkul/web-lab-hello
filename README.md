@@ -15,6 +15,7 @@ Bu proje, Web Tasarımı ve Programlama dersi LAB-1 kapsamında Vite + React + T
 ## Kurulum
 ```bash
 npm install
+```
 
 ## Lighthouse Accessibility
 ![Lighthouse Accessibility Skoru](./public/lighthouse.png)
