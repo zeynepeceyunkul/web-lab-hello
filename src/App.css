@@ -40,3 +40,8 @@
 .read-the-docs {
   color: #888;
 }
+body {
+  background: #0f172a;
+  color: #e5e7eb;
+  font-family: system-ui, sans-serif;
+}
