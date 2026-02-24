@@ -63,3 +63,12 @@ figure img {
 }
 #projeler a { color: #60a5fa; }
 #projeler a:focus { outline: 2px solid #2563eb; outline-offset: 2px; }
+.form-group { margin-bottom: 1rem; }
+label { display: block; margin-bottom: 0.25rem; }
+input, textarea, select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.error-msg { color: #f87171; font-size: 0.85rem; }
