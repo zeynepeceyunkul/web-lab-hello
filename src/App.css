@@ -167,3 +167,40 @@ button:hover {
     align-items: flex-start;
   }
 }
+/* ===== Header / Nav (Flexbox) ===== */
+.site-header {
+  padding: var(--space-md) 0;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-list {
+  display: flex;
+  gap: var(--space-md);
+  list-style: none;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  transition: var(--transition-fast);
+}
+
+.nav-link:hover {
+  background: var(--color-surface);
+}
+
+/* ===== Mobil Breakpoint: Nav alt alta ===== */
+@media (max-width: 768px) {
+  .nav-list {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
