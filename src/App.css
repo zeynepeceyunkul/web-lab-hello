@@ -1,74 +1,169 @@
+@import './styles/tokens.css';
+
+/* Layout container */
 #root {
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: var(--space-xl);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--color-primary);
+  color: var(--color-bg);
+  padding: var(--space-sm) var(--space-md);
+  z-index: 100;
+  border-radius: var(--radius-sm);
+  transition: var(--transition-fast);
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.skip-link:focus {
+  top: var(--space-sm);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Header / Nav */
+header {
+  padding: var(--space-md) 0;
 }
 
-.card {
-  padding: 2em;
+nav ul {
+  display: flex;
+  gap: var(--space-md);
+  list-style: none;
 }
 
-.read-the-docs {
-  color: #888;
+nav a {
+  display: inline-block;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  transition: var(--transition-fast);
 }
-body {
-  background: #0f172a;
-  color: #e5e7eb;
-  font-family: system-ui, sans-serif;
+
+nav a:hover {
+  background: var(--color-surface);
 }
+
+main {
+  display: grid;
+  gap: var(--space-xl);
+  padding: var(--space-lg) 0;
+}
+
+/* Typography (fluid) */
+h1 {
+  font-size: var(--text-3xl);
+  line-height: 1.1;
+}
+h2 {
+  font-size: var(--text-2xl);
+}
+h3 {
+  font-size: var(--text-xl);
+}
+
+p,
+li,
+label,
+input,
+textarea,
+select,
+button {
+  font-size: var(--text-base);
+}
+
+/* Sections */
+section {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+/* About (figure) */
 figure {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
 }
 
 figure img {
-  border-radius: 999px;
+  border-radius: var(--radius-full);
   object-fit: cover;
 }
+
+/* Projects */
 #projeler article {
-  padding: 12px;
-  border: 1px solid #2a2a2a;
-  border-radius: 8px;
-  margin-bottom: 12px;
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--space-md);
 }
-#projeler a { color: #60a5fa; }
-#projeler a:focus { outline: 2px solid #2563eb; outline-offset: 2px; }
-.form-group { margin-bottom: 1rem; }
-label { display: block; margin-bottom: 0.25rem; }
-input, textarea, select {
+
+#projeler article:last-child {
+  margin-bottom: 0;
+}
+
+/* Form */
+.form-group {
+  margin-bottom: var(--space-md);
+}
+
+label {
+  display: block;
+  margin-bottom: var(--space-xs);
+  color: var(--color-text);
+}
+
+input,
+textarea,
+select {
   width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: var(--space-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  color: var(--color-text);
 }
-.error-msg { color: #f87171; font-size: 0.85rem; }
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+button {
+  border: 0;
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-lg);
+  background: var(--color-secondary);
+  color: var(--color-bg);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+button:hover {
+  background: var(--color-accent);
+}
+
+.error-msg {
+  color: var(--color-accent);
+  font-size: var(--text-sm);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #root {
+    padding: var(--space-lg);
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
