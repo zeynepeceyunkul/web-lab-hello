@@ -54,11 +54,3 @@ Bu sayede font boyutları ekran genişliğine göre dinamik olarak değişmekted
 
 ### Mobile
 ![Mobile](public/lab3-mobile.png)
-
-## CSS Kararları (LAB-3)
-
-- **Design Tokens:** Renkler, spacing, radius ve typography `tokens.css` içinde tanımlandı ve tüm stiller `var(--...)` ile yönetildi.
-- **Fluid Typography:** Başlık ve metin boyutları `clamp()` ile akışkan hale getirildi.
-- **Flexbox (Navigation):** Header menüsü Flexbox ile yatay dizildi, 768px altında dikey stack yapıldı.
-- **Grid (Projects):** Proje kartları Desktop’ta 3 kolon, Tablet’te 2 kolon, Mobilde 1 kolon olacak şekilde düzenlendi.
-- **Breakpoints:** 1024px (tablet) ve 768px (mobil) kırılımlarıyla responsive davranış sağlandı.
