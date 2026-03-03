@@ -229,3 +229,10 @@ button:hover {
     grid-template-columns: 1fr;
   }
 }
+.page-title { font-size: var(--text-3xl); }
+.section-title { font-size: var(--text-2xl); }
+.project-card h3 { font-size: var(--text-xl); }
+
+p, li, label, input, textarea, select, button {
+  font-size: var(--text-base);
+}
