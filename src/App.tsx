@@ -6,21 +6,22 @@ function App() {
         Ana içeriğe atla
       </a>
 
-      <header>
-        <nav aria-label="Ana navigasyon">
-          <ul>
-            <li><a href="#hakkimda">Hakkımda</a></li>
-            <li><a href="#projeler">Projeler</a></li>
-            <li><a href="#iletisim">İletişim</a></li>
+      <header className="site-header">
+        <nav className="site-nav" aria-label="Ana navigasyon">
+          <ul className="nav-list">
+            <li><a className="nav-link" href="#hakkimda">Hakkımda</a></li>
+            <li><a className="nav-link" href="#projeler">Projeler</a></li>
+            <li><a className="nav-link" href="#iletisim">İletişim</a></li>
           </ul>
         </nav>
       </header>
 
-      <main id="main-content">
-        <h1>Zeynep Ece Yünkül - Kişisel Portföy</h1>
+      <main id="main-content" className="site-main">
+        <h1 className="page-title">Zeynep Ece Yünkül - Kişisel Portföy</h1>
 
-        <section id="hakkimda">
-          <h2>Hakkımda</h2>
+        <section id="hakkimda" className="section">
+          <h2 className="section-title">Hakkımda</h2>
+
           <figure>
             <img
               src="/profil.jpg"
@@ -43,37 +44,47 @@ function App() {
             <li>HTML5 (Semantik)</li>
             <li>CSS</li>
           </ul>
-          {/* içerik birazdan */}
         </section>
 
-        <section id="projeler">
-          <h2>Projelerim</h2>
-          <article>
-            <h3>Mindful Habits</h3>
-            <p>Günlük alışkanlık takip ve motivasyon uygulaması.</p>
-            <p><strong>Teknolojiler:</strong> React, Tailwind CSS, Firebase</p>
-            <p>
-              <a href="https://github.com/zeynepeceyunkul/mindful-habits" target="_blank" rel="noreferrer">
-                GitHub Repo
-              </a>
-            </p>
-          </article>
+        <section id="projeler" className="section">
+          <h2 className="section-title">Projelerim</h2>
 
-          <article>
-            <h3>Scalable URL Shortener</h3>
-            <p>Kısa link üretimi ve yönlendirme mantığı üzerine backend projesi.</p>
-            <p><strong>Teknolojiler:</strong> Node.js, TypeScript</p>
-            <p>
-              <a href="https://github.com/zeynepeceyunkul/scalable-url-shortener" target="_blank" rel="noreferrer">
-                GitHub Repo
-              </a>
-            </p>
-          </article>
-          {/* içerik birazdan */}
+          <div className="projects-grid">
+            <article className="project-card">
+              <h3>Mindful Habits</h3>
+              <p>Günlük alışkanlık takip ve motivasyon uygulaması.</p>
+              <p><strong>Teknolojiler:</strong> React, Tailwind CSS, Firebase</p>
+              <p>
+                <a
+                  href="https://github.com/zeynepeceyunkul/mindful-habits"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  GitHub Repo
+                </a>
+              </p>
+            </article>
+
+            <article className="project-card">
+              <h3>Scalable URL Shortener</h3>
+              <p>Kısa link üretimi ve yönlendirme mantığı üzerine backend projesi.</p>
+              <p><strong>Teknolojiler:</strong> Node.js, TypeScript</p>
+              <p>
+                <a
+                  href="https://github.com/zeynepeceyunkul/scalable-url-shortener"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  GitHub Repo
+                </a>
+              </p>
+            </article>
+          </div>
         </section>
 
-        <section id="iletisim">
-          <h2>İletişim</h2>
+        <section id="iletisim" className="section">
+          <h2 className="section-title">İletişim</h2>
+
           <form action="#" method="POST" noValidate>
             <fieldset>
               <legend>İletişim Formu</legend>
@@ -136,11 +147,10 @@ function App() {
               <button type="submit">Gönder</button>
             </fieldset>
           </form>
-          {/* form birazdan */}
         </section>
       </main>
 
-      <footer>
+      <footer className="site-footer">
         <p>&copy; 2026 Zeynep Ece Yünkül. Tüm hakları saklıdır.</p>
       </footer>
     </>
