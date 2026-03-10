@@ -1,160 +1,205 @@
-function App() {
+import { useState } from "react";
+import Button from "./components/Button";
+import Input from "./components/Input";
+import Card from "./components/Card";
+import UIKit from "./pages/UIKit";
+
+function ThemeToggle() {
+  const toggleTheme = () => {
+    document.documentElement.classList.toggle("dark");
+  };
+
   return (
-    <>
-      {/* Skip link (a11y) */}
-      <a href="#main-content" className="skip-link">
-        Ana içeriğe atla
-      </a>
-
-      <header className="site-header">
-        <nav className="site-nav" aria-label="Ana navigasyon">
-          <ul className="nav-list">
-            <li><a className="nav-link" href="#hakkimda">Hakkımda</a></li>
-            <li><a className="nav-link" href="#projeler">Projeler</a></li>
-            <li><a className="nav-link" href="#iletisim">İletişim</a></li>
-          </ul>
-        </nav>
-      </header>
-
-      <main id="main-content" className="site-main">
-        <h1 className="page-title">Zeynep Ece Yünkül - Kişisel Portföy</h1>
-
-        <section id="hakkimda" className="section">
-          <h2 className="section-title">Hakkımda</h2>
-
-          <figure>
-            <img
-              src="/profil.jpg"
-              alt="Zeynep Ece Yünkül profil fotoğrafı"
-              width={180}
-              height={180}
-            />
-            <figcaption>Zeynep Ece Yünkül</figcaption>
-          </figure>
-
-          <p>
-            Frontend geliştirme ve UI/UX alanında kendimi geliştiriyorum. React ve TypeScript ile
-            semantik ve erişilebilir arayüzler üretmeyi hedefliyorum.
-          </p>
-
-          <h3>Kullandığım Teknolojiler</h3>
-          <ul>
-            <li>React</li>
-            <li>TypeScript</li>
-            <li>HTML5 (Semantik)</li>
-            <li>CSS</li>
-          </ul>
-        </section>
-
-        <section id="projeler" className="section">
-          <h2 className="section-title">Projelerim</h2>
-
-          <div className="projects-grid">
-            <article className="project-card">
-              <h3>Mindful Habits</h3>
-              <p>Günlük alışkanlık takip ve motivasyon uygulaması.</p>
-              <p><strong>Teknolojiler:</strong> React, Tailwind CSS, Firebase</p>
-              <p>
-                <a
-                  href="https://github.com/zeynepeceyunkul/mindful-habits"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  GitHub Repo
-                </a>
-              </p>
-            </article>
-
-            <article className="project-card">
-              <h3>Scalable URL Shortener</h3>
-              <p>Kısa link üretimi ve yönlendirme mantığı üzerine backend projesi.</p>
-              <p><strong>Teknolojiler:</strong> Node.js, TypeScript</p>
-              <p>
-                <a
-                  href="https://github.com/zeynepeceyunkul/scalable-url-shortener"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  GitHub Repo
-                </a>
-              </p>
-            </article>
-          </div>
-        </section>
-
-        <section id="iletisim" className="section">
-          <h2 className="section-title">İletişim</h2>
-
-          <form action="#" method="POST" noValidate>
-            <fieldset>
-              <legend>İletişim Formu</legend>
-
-              <div className="form-group">
-                <label htmlFor="name">Ad Soyad:</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  minLength={2}
-                  aria-describedby="name-error"
-                />
-                <small id="name-error" className="error-msg" role="alert"></small>
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="email">E-posta:</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  aria-describedby="email-error"
-                />
-                <small id="email-error" className="error-msg" role="alert"></small>
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="subject">Konu:</label>
-                <select
-                  id="subject"
-                  name="subject"
-                  required
-                  aria-describedby="subject-error"
-                  defaultValue=""
-                >
-                  <option value="">-- Seçiniz --</option>
-                  <option value="is">İş Teklifi</option>
-                  <option value="soru">Soru</option>
-                  <option value="oneri">Öneri</option>
-                </select>
-                <small id="subject-error" className="error-msg" role="alert"></small>
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="message">Mesajınız:</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  required
-                  minLength={10}
-                  aria-describedby="message-error"
-                ></textarea>
-                <small id="message-error" className="error-msg" role="alert"></small>
-              </div>
-
-              <button type="submit">Gönder</button>
-            </fieldset>
-          </form>
-        </section>
-      </main>
-
-      <footer className="site-footer">
-        <p>&copy; 2026 Zeynep Ece Yünkül. Tüm hakları saklıdır.</p>
-      </footer>
-    </>
-  )
+    <button
+      onClick={toggleTheme}
+      className="fixed top-4 right-4 z-50 rounded-full bg-gray-200 p-2 text-gray-800 shadow-lg transition-transform hover:scale-110 dark:bg-gray-700 dark:text-gray-200"
+      aria-label="Tema değiştir"
+      type="button"
+    >
+      <span className="dark:hidden">☾</span>
+      <span className="hidden dark:inline">☀</span>
+    </button>
+  );
 }
 
-export default App
+export default function App() {
+  const [page, setPage] = useState<"portfolio" | "uikit">("portfolio");
+
+  return (
+    <div className="min-h-screen bg-white text-gray-900 dark:bg-gray-950 dark:text-white">
+      <ThemeToggle />
+
+      <div className="fixed bottom-4 left-4 z-50 flex gap-2">
+        <Button size="sm" variant="secondary" onClick={() => setPage("portfolio")}>
+          Portfolio
+        </Button>
+        <Button size="sm" variant="primary" onClick={() => setPage("uikit")}>
+          UI Kit
+        </Button>
+      </div>
+
+      {page === "uikit" ? (
+        <UIKit />
+      ) : (
+        <>
+          <a
+            href="#main-content"
+            className="sr-only z-50 bg-blue-800 p-2 text-white focus:not-sr-only focus:absolute focus:top-0 focus:left-0"
+          >
+            Ana içeriğe atla
+          </a>
+
+          <header className="sticky top-0 z-40 border-b border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
+            <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 py-3 sm:flex-row">
+              <h1 className="text-xl font-bold text-blue-800 dark:text-blue-300">
+                Zeynep Ece
+              </h1>
+
+              <nav aria-label="Ana navigasyon">
+                <ul className="flex flex-wrap gap-2">
+                  <li>
+                    <a
+                      href="#hakkimda"
+                      className="rounded-md px-3 py-1 text-gray-700 transition-colors hover:bg-blue-100 dark:text-gray-300 dark:hover:bg-gray-800"
+                    >
+                      Hakkımda
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#projeler"
+                      className="rounded-md px-3 py-1 text-gray-700 transition-colors hover:bg-blue-100 dark:text-gray-300 dark:hover:bg-gray-800"
+                    >
+                      Projeler
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#iletisim"
+                      className="rounded-md px-3 py-1 text-gray-700 transition-colors hover:bg-blue-100 dark:text-gray-300 dark:hover:bg-gray-800"
+                    >
+                      İletişim
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </header>
+
+          <main id="main-content">
+            <section id="hakkimda" className="px-4 py-16">
+              <div className="mx-auto flex max-w-4xl flex-col items-center gap-8 md:flex-row md:items-start">
+                <figure className="shrink-0">
+                  <img
+                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=600&auto=format&fit=crop"
+                    alt="Profil fotoğrafı"
+                    className="h-40 w-40 rounded-full object-cover shadow-lg"
+                  />
+                </figure>
+
+                <div>
+                  <h2 className="mb-4 text-center text-3xl font-bold text-gray-900 dark:text-white md:text-left">
+                    Hakkımda
+                  </h2>
+
+                  <p className="mb-4 leading-relaxed text-gray-600 dark:text-gray-400">
+                    Yazılım mühendisliği öğrencisiyim. React, Tailwind ve modern web
+                    teknolojileriyle kullanıcı dostu arayüzler geliştiriyorum.
+                  </p>
+
+                  <ul className="flex flex-wrap gap-2">
+                    <li className="rounded-full bg-blue-800 px-3 py-1 text-sm text-white">
+                      React
+                    </li>
+                    <li className="rounded-full bg-blue-800 px-3 py-1 text-sm text-white">
+                      TypeScript
+                    </li>
+                    <li className="rounded-full bg-blue-800 px-3 py-1 text-sm text-white">
+                      Tailwind
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <section id="projeler" className="bg-gray-50 px-4 py-16 dark:bg-gray-900">
+              <div className="mx-auto max-w-6xl">
+                <h2 className="mb-10 text-center text-3xl font-bold text-gray-900 dark:text-white">
+                  Projelerim
+                </h2>
+
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  <Card
+                    variant="elevated"
+                    title="Task Planner"
+                    image="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=1000&auto=format&fit=crop"
+                    imageAlt="Task planner uygulaması görseli"
+                    footer={<Button size="sm">Detay</Button>}
+                  >
+                    Görev ve plan yönetimi için geliştirdiğim bir uygulama.
+                  </Card>
+
+                  <Card
+                    variant="outlined"
+                    title="Mindful Habits"
+                    image="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1000&auto=format&fit=crop"
+                    imageAlt="Habit tracker uygulaması görseli"
+                    footer={<Button size="sm" variant="secondary">Detay</Button>}
+                  >
+                    Günlük alışkanlık takibi yapan responsive web uygulaması.
+                  </Card>
+
+                  <Card
+                    variant="filled"
+                    title="UniTrack"
+                    image="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1000&auto=format&fit=crop"
+                    imageAlt="Öğrenci takip uygulaması görseli"
+                    footer={<Button size="sm" variant="ghost">Detay</Button>}
+                  >
+                    Üniversite öğrencileri için ders, sınav ve ödev takibi uygulaması.
+                  </Card>
+                </div>
+              </div>
+            </section>
+
+            <section id="iletisim" className="px-4 py-16">
+              <div className="mx-auto max-w-lg">
+                <h2 className="mb-8 text-center text-3xl font-bold text-gray-900 dark:text-white">
+                  İletişim
+                </h2>
+
+                <form className="space-y-4">
+                  <Input id="name" label="Ad Soyad" required />
+                  <Input id="email" label="E-posta" type="email" required />
+
+                  <div className="space-y-1">
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                    >
+                      Mesajınız
+                    </label>
+                    <textarea
+                      id="message"
+                      rows={5}
+                      required
+                      className="w-full rounded-lg border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
+                    />
+                  </div>
+
+                  <Button variant="primary" size="lg" type="submit">
+                    Gönder
+                  </Button>
+                </form>
+              </div>
+            </section>
+          </main>
+
+          <footer className="border-t border-gray-200 bg-gray-100 px-4 py-6 text-center text-sm text-gray-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400">
+            <p>&copy; 2025 Zeynep Ece. Tüm hakları saklıdır.</p>
+          </footer>
+        </>
+      )}
+    </div>
+  );
+}
