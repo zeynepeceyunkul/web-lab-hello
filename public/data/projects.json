@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "title": "E-Ticaret Platformu",
+    "description": "React ve Node.js ile tam kapsamlı e-ticaret uygulaması.",
+    "tech": ["React", "Node.js", "MongoDB"],
+    "year": 2024,
+    "category": "fullstack",
+    "featured": true,
+    "image": "https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 2,
+    "title": "Blog Uygulaması",
+    "description": "Next.js ile SEO dostu kişisel blog platformu.",
+    "tech": ["Next.js", "TypeScript", "Tailwind"],
+    "year": 2024,
+    "category": "frontend",
+    "featured": false,
+    "image": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 3,
+    "title": "Hava Durumu API",
+    "description": "OpenWeather API ile anlık hava durumu sorgulama.",
+    "tech": ["JavaScript", "REST API", "CSS"],
+    "year": 2023,
+    "category": "frontend",
+    "featured": true,
+    "image": "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 4,
+    "title": "Görev Yöneticisi",
+    "description": "Drag-and-drop destekli Kanban tarzı görev panosu.",
+    "tech": ["React", "TypeScript", "DnD Kit"],
+    "year": 2024,
+    "category": "frontend",
+    "featured": false,
+    "image": "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 5,
+    "title": "Chat Uygulaması",
+    "description": "WebSocket ile gerçek zamanlı mesajlaşma uygulaması.",
+    "tech": ["React", "Socket.io", "Express"],
+    "year": 2023,
+    "category": "fullstack",
+    "featured": true,
+    "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop"
+  }
+]
