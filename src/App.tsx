@@ -1,160 +1,130 @@
-function App() {
+import { useEffect, useMemo, useState } from "react";
+import Alert from "./components/Alert";
+import ContactForm from "./components/ContactForm";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import HeroSection from "./components/HeroSection";
+import ProjectSection from "./components/ProjectSection";
+import { fetchProjects } from "./services/projectService";
+import type { FilterState, Project, Status } from "./types/project";
+import {
+  filterByCategory,
+  filterBySearch,
+  sortProjects,
+} from "./utils/projectHelpers";
+
+const initialFilters: FilterState = {
+  search: "",
+  category: "all",
+  sortField: "year",
+  sortOrder: "desc",
+};
+
+function ThemeToggle() {
+  const toggleTheme = () => {
+    document.documentElement.classList.toggle("dark");
+  };
+
   return (
-    <>
-      {/* Skip link (a11y) */}
-      <a href="#main-content" className="skip-link">
+    <button
+      type="button"
+      onClick={toggleTheme}
+      className="fixed right-4 top-4 z-50 rounded-full bg-gray-200 p-3 text-gray-800 shadow-lg transition hover:scale-105 dark:bg-gray-700 dark:text-gray-200"
+      aria-label="Temayı değiştir"
+    >
+      <span className="dark:hidden">☾</span>
+      <span className="hidden dark:inline">☀</span>
+    </button>
+  );
+}
+
+export default function App() {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [status, setStatus] = useState<Status>("idle");
+  const [error, setError] = useState<string>("");
+  const [filters, setFilters] = useState<FilterState>(initialFilters);
+
+  useEffect(() => {
+    async function load() {
+      setStatus("loading");
+      setError("");
+
+      try {
+        const data = await fetchProjects();
+        setProjects(data);
+        setStatus("success");
+      } catch (err) {
+        console.error("Projeler yüklenemedi:", err);
+        setError("Projeler yüklenirken bir hata oluştu.");
+        setStatus("error");
+      }
+    }
+
+    load();
+  }, []);
+
+  const filteredProjects = useMemo(() => {
+    let result = filterBySearch(projects, filters.search);
+    result = filterByCategory(result, filters.category);
+    result = sortProjects(result, filters.sortField, filters.sortOrder);
+    return result;
+  }, [projects, filters]);
+
+  return (
+    <div className="min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-white">
+      <ThemeToggle />
+
+      <a
+        href="#main-content"
+        className="sr-only z-50 bg-blue-800 p-2 text-white focus:not-sr-only focus:absolute focus:left-0 focus:top-0"
+      >
         Ana içeriğe atla
       </a>
 
-      <header className="site-header">
-        <nav className="site-nav" aria-label="Ana navigasyon">
-          <ul className="nav-list">
-            <li><a className="nav-link" href="#hakkimda">Hakkımda</a></li>
-            <li><a className="nav-link" href="#projeler">Projeler</a></li>
-            <li><a className="nav-link" href="#iletisim">İletişim</a></li>
-          </ul>
-        </nav>
-      </header>
+      <Header />
 
-      <main id="main-content" className="site-main">
-        <h1 className="page-title">Zeynep Ece Yünkül - Kişisel Portföy</h1>
+      <main id="main-content">
+        <HeroSection />
 
-        <section id="hakkimda" className="section">
-          <h2 className="section-title">Hakkımda</h2>
-
-          <figure>
-            <img
-              src="/profil.jpg"
-              alt="Zeynep Ece Yünkül profil fotoğrafı"
-              width={180}
-              height={180}
-            />
-            <figcaption>Zeynep Ece Yünkül</figcaption>
-          </figure>
-
-          <p>
-            Frontend geliştirme ve UI/UX alanında kendimi geliştiriyorum. React ve TypeScript ile
-            semantik ve erişilebilir arayüzler üretmeyi hedefliyorum.
-          </p>
-
-          <h3>Kullandığım Teknolojiler</h3>
-          <ul>
-            <li>React</li>
-            <li>TypeScript</li>
-            <li>HTML5 (Semantik)</li>
-            <li>CSS</li>
-          </ul>
-        </section>
-
-        <section id="projeler" className="section">
-          <h2 className="section-title">Projelerim</h2>
-
-          <div className="projects-grid">
-            <article className="project-card">
-              <h3>Mindful Habits</h3>
-              <p>Günlük alışkanlık takip ve motivasyon uygulaması.</p>
-              <p><strong>Teknolojiler:</strong> React, Tailwind CSS, Firebase</p>
-              <p>
-                <a
-                  href="https://github.com/zeynepeceyunkul/mindful-habits"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  GitHub Repo
-                </a>
-              </p>
-            </article>
-
-            <article className="project-card">
-              <h3>Scalable URL Shortener</h3>
-              <p>Kısa link üretimi ve yönlendirme mantığı üzerine backend projesi.</p>
-              <p><strong>Teknolojiler:</strong> Node.js, TypeScript</p>
-              <p>
-                <a
-                  href="https://github.com/zeynepeceyunkul/scalable-url-shortener"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  GitHub Repo
-                </a>
-              </p>
-            </article>
+        {status === "loading" && (
+          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <Alert variant="info" title="Yükleniyor">
+              Projeler yükleniyor...
+            </Alert>
           </div>
-        </section>
+        )}
 
-        <section id="iletisim" className="section">
-          <h2 className="section-title">İletişim</h2>
+        {status === "error" && (
+          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <Alert variant="error" title="Hata">
+              {error}
+            </Alert>
+          </div>
+        )}
 
-          <form action="#" method="POST" noValidate>
-            <fieldset>
-              <legend>İletişim Formu</legend>
+        <ProjectSection
+          projects={filteredProjects}
+          filters={filters}
+          totalCount={filteredProjects.length}
+          isReady={status === "success"}
+          onSearchChange={(value) =>
+            setFilters((prev) => ({ ...prev, search: value }))
+          }
+          onCategoryChange={(value) =>
+            setFilters((prev) => ({ ...prev, category: value }))
+          }
+          onSortFieldChange={(value) =>
+            setFilters((prev) => ({ ...prev, sortField: value }))
+          }
+          onSortOrderChange={(value) =>
+            setFilters((prev) => ({ ...prev, sortOrder: value }))
+          }
+        />
 
-              <div className="form-group">
-                <label htmlFor="name">Ad Soyad:</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  minLength={2}
-                  aria-describedby="name-error"
-                />
-                <small id="name-error" className="error-msg" role="alert"></small>
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="email">E-posta:</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  aria-describedby="email-error"
-                />
-                <small id="email-error" className="error-msg" role="alert"></small>
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="subject">Konu:</label>
-                <select
-                  id="subject"
-                  name="subject"
-                  required
-                  aria-describedby="subject-error"
-                  defaultValue=""
-                >
-                  <option value="">-- Seçiniz --</option>
-                  <option value="is">İş Teklifi</option>
-                  <option value="soru">Soru</option>
-                  <option value="oneri">Öneri</option>
-                </select>
-                <small id="subject-error" className="error-msg" role="alert"></small>
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="message">Mesajınız:</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  required
-                  minLength={10}
-                  aria-describedby="message-error"
-                ></textarea>
-                <small id="message-error" className="error-msg" role="alert"></small>
-              </div>
-
-              <button type="submit">Gönder</button>
-            </fieldset>
-          </form>
-        </section>
+        <ContactForm />
       </main>
 
-      <footer className="site-footer">
-        <p>&copy; 2026 Zeynep Ece Yünkül. Tüm hakları saklıdır.</p>
-      </footer>
-    </>
-  )
+      <Footer />
+    </div>
+  );
 }
-
-export default App
