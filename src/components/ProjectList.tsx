@@ -1,3 +1,5 @@
+import Button from "./Button";
+import Card from "./Card";
 import type { Project } from "../types/project";
 
 type ProjectListProps = {
@@ -16,54 +18,43 @@ export default function ProjectList({ projects }: ProjectListProps) {
   return (
     <section className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
       {projects.map((project) => (
-        <article
+        <Card
           key={project.id}
-          className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md dark:border-gray-700 dark:bg-gray-900"
-        >
-          <img
-            src={project.image}
-            alt={project.title}
-            className="h-48 w-full object-cover"
-          />
-
-          <div className="space-y-4 p-5">
-            <div className="flex items-center justify-between gap-3">
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-                {project.title}
-              </h2>
-              <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-700 dark:bg-blue-900 dark:text-blue-200">
-                {project.year}
-              </span>
-            </div>
-
-            <p className="text-sm leading-6 text-gray-600 dark:text-gray-400">
-              {project.description}
-            </p>
-
-            <div className="flex flex-wrap gap-2">
-              {project.tech.map((item) => (
-                <span
-                  key={item}
-                  className="rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-700 dark:bg-gray-800 dark:text-gray-300"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-
+          variant={project.featured ? "elevated" : "outlined"}
+          title={project.title}
+          image={project.image}
+          imageAlt={project.title}
+          footer={
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium capitalize text-gray-500 dark:text-gray-400">
+              <span className="text-sm capitalize text-gray-500 dark:text-gray-400">
                 {project.category}
               </span>
-
-              {project.featured && (
-                <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700 dark:bg-emerald-900 dark:text-emerald-200">
-                  Featured
-                </span>
-              )}
+              <Button size="sm">Detay</Button>
             </div>
+          }
+        >
+          <p className="mb-3 text-sm leading-6">{project.description}</p>
+
+          <div className="mb-3 flex flex-wrap gap-2">
+            {project.tech.map((item) => (
+              <span
+                key={item}
+                className="rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-700 dark:bg-gray-700 dark:text-gray-200"
+              >
+                {item}
+              </span>
+            ))}
           </div>
-        </article>
+
+          <div className="flex items-center justify-between text-sm">
+            <span className="text-gray-500 dark:text-gray-400">{project.year}</span>
+            {project.featured && (
+              <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700 dark:bg-emerald-900 dark:text-emerald-200">
+                Featured
+              </span>
+            )}
+          </div>
+        </Card>
       ))}
     </section>
   );
