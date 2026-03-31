@@ -1,6 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
-import ProjectFilters from "./components/ProjectFilters";
-import ProjectList from "./components/ProjectList";
+import Alert from "./components/Alert";
+import ContactForm from "./components/ContactForm";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import HeroSection from "./components/HeroSection";
+import ProjectSection from "./components/ProjectSection";
 import { fetchProjects } from "./services/projectService";
 import type { FilterState, Project, Status } from "./types/project";
 import {
@@ -25,7 +29,7 @@ function ThemeToggle() {
     <button
       type="button"
       onClick={toggleTheme}
-      className="fixed top-4 right-4 z-50 rounded-full bg-gray-200 p-3 text-gray-800 shadow-lg transition hover:scale-105 dark:bg-gray-700 dark:text-gray-200"
+      className="fixed right-4 top-4 z-50 rounded-full bg-gray-200 p-3 text-gray-800 shadow-lg transition hover:scale-105 dark:bg-gray-700 dark:text-gray-200"
       aria-label="Temayı değiştir"
     >
       <span className="dark:hidden">☾</span>
@@ -70,27 +74,39 @@ export default function App() {
     <div className="min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-white">
       <ThemeToggle />
 
-      <header className="border-b border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
-        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-          <p className="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-blue-700 dark:text-blue-300">
-            LAB-5
-          </p>
-          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-            TypeScript Proje Listesi
-          </h1>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-gray-600 dark:text-gray-400">
-            JSON verisinden proje çekme, filtreleme, sıralama ve state yönetimi
-            örneği.
-          </p>
-        </div>
-      </header>
+      <a
+        href="#main-content"
+        className="sr-only z-50 bg-blue-800 p-2 text-white focus:not-sr-only focus:absolute focus:left-0 focus:top-0"
+      >
+        Ana içeriğe atla
+      </a>
 
-      <main className="mx-auto max-w-7xl space-y-8 px-4 py-8 sm:px-6 lg:px-8">
-        <ProjectFilters
-          search={filters.search}
-          category={filters.category}
-          sortField={filters.sortField}
-          sortOrder={filters.sortOrder}
+      <Header />
+
+      <main id="main-content">
+        <HeroSection />
+
+        {status === "loading" && (
+          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <Alert variant="info" title="Yükleniyor">
+              Projeler yükleniyor...
+            </Alert>
+          </div>
+        )}
+
+        {status === "error" && (
+          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <Alert variant="error" title="Hata">
+              {error}
+            </Alert>
+          </div>
+        )}
+
+        <ProjectSection
+          projects={filteredProjects}
+          filters={filters}
+          totalCount={filteredProjects.length}
+          isReady={status === "success"}
           onSearchChange={(value) =>
             setFilters((prev) => ({ ...prev, search: value }))
           }
@@ -105,33 +121,10 @@ export default function App() {
           }
         />
 
-        {status === "loading" && (
-          <div className="rounded-2xl border border-blue-200 bg-blue-50 p-6 text-blue-700 dark:border-blue-900 dark:bg-blue-950 dark:text-blue-200">
-            Projeler yükleniyor...
-          </div>
-        )}
-
-        {status === "error" && (
-          <div
-            role="alert"
-            className="rounded-2xl border border-red-200 bg-red-50 p-6 text-red-700 dark:border-red-900 dark:bg-red-950 dark:text-red-200"
-          >
-            {error}
-          </div>
-        )}
-
-        {status === "success" && (
-          <>
-            <div className="flex items-center justify-between">
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                Toplam <span className="font-semibold">{filteredProjects.length}</span> proje gösteriliyor.
-              </p>
-            </div>
-
-            <ProjectList projects={filteredProjects} />
-          </>
-        )}
+        <ContactForm />
       </main>
+
+      <Footer />
     </div>
   );
 }
